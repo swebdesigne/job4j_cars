@@ -9,4 +9,9 @@ http://www.liquibase.org/xml/ns/dbchangelog ">
     <include file="scripts/update_004.sql" relativeToChangelogFile="true"/>
     <include file="scripts/update_005.sql" relativeToChangelogFile="true"/>
     <include file="scripts/003_ddl_create_participates_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/004_create_engine_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/005_create_car_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/006_create_owner_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/007_create_history_owner_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/008_alter_table_post_add_column_car_id.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

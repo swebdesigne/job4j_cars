@@ -2,6 +2,7 @@ package ru.job4j.cars.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import net.jcip.annotations.ThreadSafe;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@ThreadSafe
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "auto_post")
@@ -28,4 +30,7 @@ public class Post {
             inverseJoinColumns = {@JoinColumn(name = "auto_user_id")}
     )
     private List<User> participates = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
 }

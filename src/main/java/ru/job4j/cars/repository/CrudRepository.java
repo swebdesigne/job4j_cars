@@ -3,6 +3,7 @@ package ru.job4j.cars.repository;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
@@ -10,15 +11,17 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+@Repository
 @AllArgsConstructor
 public class CrudRepository {
     private final SessionFactory sf;
 
     public void run(Consumer<Session> command) {
         tx(session -> {
-            command.accept(session);
-            return null;
-        });
+                    command.accept(session);
+                    return null;
+                }
+        );
     }
 
     public void run(String query, Map<String, Object> args) {
@@ -66,7 +69,7 @@ public class CrudRepository {
 
     public <T> T tx(Function<Session, T> command) {
         var session = sf.openSession();
-        try (session) {
+        try {
             var tx = session.beginTransaction();
             T rsl = command.apply(session);
             tx.commit();
@@ -77,7 +80,7 @@ public class CrudRepository {
                 tx.rollback();
             }
             throw e;
-        }  finally {
+        } finally {
             session.close();
         }
     }
