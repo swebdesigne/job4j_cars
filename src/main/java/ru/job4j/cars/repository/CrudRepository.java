@@ -47,6 +47,14 @@ public class CrudRepository {
         };
         return tx(command);
     }
+    public <T> Optional<T> optional(String query, Class<T> cl) {
+        Function<Session, Optional<T>> command = session -> {
+            var sq = session
+                    .createQuery(query, cl);
+            return sq.uniqueResultOptional();
+        };
+        return tx(command);
+    }
 
     public <T> List<T> query(String query, Class<T> cl) {
         Function<Session, List<T>> command = session -> session
