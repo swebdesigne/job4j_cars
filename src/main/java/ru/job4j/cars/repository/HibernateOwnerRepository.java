@@ -21,8 +21,9 @@ public class HibernateOwnerRepository implements OwnerRepository {
     private final static String DELETE = "DELETE Owner WHERE id = :fID";
 
     @Override
-    public void add(Owner owner) {
+    public Optional<Owner> add(Owner owner) {
         crudRepository.run(session -> session.persist(owner));
+        return Optional.of(owner);
     }
 
     @Override

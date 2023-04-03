@@ -16,13 +16,14 @@ import java.util.Optional;
 @Slf4j
 public class HibernateCarRepository implements CarRepository {
     private final CrudRepository crudRepository;
-    private final static String FIND_ALL = "FROM Car f JOIN FETCH f.owners";
-    private final static String FIND_BY_ID = "FROM Car WHERE id = :fID";
+    private final static String FIND_ALL = "FROM Car f JOIN FETCH f.owners JOIN FETCH f.engine";
+    private final static String FIND_BY_ID = "FROM Car f JOIN FETCH f.owners JOIN FETCH f.engine WHERE f.id = :fID";
     private final static String DELETE = "DELETE Car WHERE id = :fID";
 
     @Override
-    public void add(Car car) {
+    public Optional<Car> add(Car car) {
         crudRepository.run(session -> session.persist(car));
+        return Optional.of(car);
     }
 
     @Override

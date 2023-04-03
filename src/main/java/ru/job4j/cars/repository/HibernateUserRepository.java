@@ -22,9 +22,9 @@ public class HibernateUserRepository implements UserRepository {
      * @return пользователь с id.
      */
     @Override
-    public User create(User user) {
+    public Optional<User> create(User user) {
         crudRepository.run(session -> session.persist(user));
-        return user;
+        return Optional.of(user);
     }
 
     /**

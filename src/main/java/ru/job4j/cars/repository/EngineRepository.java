@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface EngineRepository {
-    void add(Engine engine);
+    Optional<Engine> add(Engine engine);
 
     List<Engine> findAll();
 

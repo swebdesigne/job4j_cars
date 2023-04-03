@@ -1,7 +1,6 @@
 package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
@@ -22,8 +21,9 @@ public class HibernateEngineRepository implements EngineRepository {
     private final static String DELETE = "DELETE Engine WHERE id = :fID";
 
     @Override
-    public void add(Engine engine) {
+    public Optional<Engine> add(Engine engine) {
         crudRepository.run(session -> session.persist(engine));
+        return Optional.of(engine);
     }
 
     @Override

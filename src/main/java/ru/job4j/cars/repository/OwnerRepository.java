@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OwnerRepository {
-    void add(Owner owner);
+    Optional<Owner> add(Owner owner);
 
     List<Owner> findAll();
 
