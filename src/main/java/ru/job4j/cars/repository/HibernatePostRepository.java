@@ -17,9 +17,15 @@ import java.util.Optional;
 @Repository
 public class HibernatePostRepository implements PostRepository {
     private final CrudRepository crudRepository;
+    private final static String FIND_ALL = "FROM Post";
     private final static String FIND_BY_LAST_DAY = "FROM Post WHERE created >= :fCreated";
     private final static String FIND_WITH_PHOTO = "FROM Post WHERE photo != null";
     private final static String FIND_BY_MARK_OF_CAR = "FROM Post c JOIN FETCH c.car WHERE c.car.name = :fName";
+
+    @Override
+    public List<Post> findAll() {
+       return crudRepository.query(FIND_ALL, Post.class);
+    }
 
     @Override
     public List<Post> findForLastDay() {

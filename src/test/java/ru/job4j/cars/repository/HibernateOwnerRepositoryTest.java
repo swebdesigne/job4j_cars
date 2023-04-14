@@ -18,7 +18,7 @@ class HibernateOwnerRepositoryTest {
     @AfterEach
     public void wipeDb() {
         HIBERNATE_OWNER_REPOSITORY.findAll().forEach(owner -> HIBERNATE_OWNER_REPOSITORY.delete(owner.getId()));
-        HIBERNATE_USER_REPOSITORY.findAllOrderById().forEach(user -> HIBERNATE_USER_REPOSITORY.delete(user.getId()));
+        HIBERNATE_USER_REPOSITORY.findAllOrderById().forEach(HIBERNATE_USER_REPOSITORY::delete);
     }
 
     private Owner createOwner(String userName, String ownerName) {

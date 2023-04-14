@@ -27,7 +27,7 @@ class HibernateCarRepositoryTest {
         HIBERNATE_CAR_REPOSITORY.findAll().forEach(car -> HIBERNATE_CAR_REPOSITORY.delete(car.getId()));
         HIBERNATE_OWNER_REPOSITORY.findAll().forEach(owner -> HIBERNATE_OWNER_REPOSITORY.delete(owner.getId()));
         HIBERNATE_ENGINE_REPOSITORY.findAll().forEach(engine -> HIBERNATE_ENGINE_REPOSITORY.delete(engine.getId()));
-        HIBERNATE_USER_REPOSITORY.findAllOrderById().forEach(user -> HIBERNATE_USER_REPOSITORY.delete(user.getId()));
+        HIBERNATE_USER_REPOSITORY.findAllOrderById().forEach(HIBERNATE_USER_REPOSITORY::delete);
     }
 
     private Car createCar(String userName, String ownerName) {

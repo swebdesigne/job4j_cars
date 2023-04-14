@@ -1,0 +1,10 @@
+<header th:replace="header"></header>
+<form th:action="@{/user/update}" method="post">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <label for="login">Логин пользователя</label>
+    <input type="text" name="login" id="login" th:placeholder="${user.login}">
+    <label for="password">Пароль пользователя</label>
+    <input type="text" name="password" id="password">
+    <button type="submit">Сохранить</button>
+</form>
+<footer th:replace="footer"></footer>

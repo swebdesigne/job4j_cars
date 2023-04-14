@@ -1,6 +1,7 @@
 package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.User;
@@ -12,6 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @ThreadSafe
 @Repository
+@Slf4j
 public class HibernateUserRepository implements UserRepository {
     private final CrudRepository crudRepository;
 
@@ -23,8 +25,12 @@ public class HibernateUserRepository implements UserRepository {
      */
     @Override
     public Optional<User> create(User user) {
-        crudRepository.run(session -> session.persist(user));
-        return Optional.of(user);
+        try {
+            crudRepository.run(session -> session.persist(user));
+            return Optional.of(user);
+        } catch (Exception e) {
+            return Optional.empty();
+        }
     }
 
     /**
@@ -33,21 +39,30 @@ public class HibernateUserRepository implements UserRepository {
      * @param user пользователь.
      */
     @Override
-    public void update(User user) {
-        crudRepository.run(session -> session.merge(user));
+    public boolean update(User user) {
+        try {
+            crudRepository.run(session -> session.merge(user));
+            return true;
+        } catch (Exception e) {
+            log.error("The error at update", e);
+        }
+        return false;
     }
 
     /**
-     * Удалить пользователя по id.
+     * Удалить пользователя.
      *
-     * @param userId ID
+     * @param user user
      */
     @Override
-    public void delete(int userId) {
-        crudRepository.run(
-                "delete from User where id = :fId",
-                Map.of("fId", userId)
-        );
+    public boolean delete(User user) {
+        try {
+            crudRepository.run(session -> session.delete(user)
+            );
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**

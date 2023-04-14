@@ -47,6 +47,7 @@ public class CrudRepository {
         };
         return tx(command);
     }
+
     public <T> Optional<T> optional(String query, Class<T> cl) {
         Function<Session, Optional<T>> command = session -> {
             var sq = session
