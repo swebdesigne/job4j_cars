@@ -45,6 +45,7 @@ public class CarRun {
             car.setEngine(HIBERNATE_ENGINE_REPOSITORY.findById(1).orElse(new Engine()));
             owner = HIBERNATE_OWNER_REPOSITORY.findById(1).orElse(new Owner());
             System.out.println(owner);
+            car.setName("Audi");
             car.setOwners(Set.of(owner));
             System.out.println("car === " + car);
             HIBERNATE_CAR_REPOSITORY.add(car);

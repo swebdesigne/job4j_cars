@@ -3,10 +3,12 @@ package ru.job4j.cars.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import net.jcip.annotations.ThreadSafe;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -20,7 +22,7 @@ public class Post {
     private int id;
     private String description;
     private LocalDateTime created = LocalDateTime.now();
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
     private List<PriceHistory> priceHistories = new ArrayList<>();
     @ManyToMany

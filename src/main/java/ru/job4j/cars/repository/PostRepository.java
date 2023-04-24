@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PostRepository {
+    Optional<Post> add(Post post);
+
     List<Post> findAll();
+
     List<Post> findForLastDay();
 
     Optional<Post> findWithPhoto();

@@ -1,0 +1,88 @@
+<header th:replace="header"></header>
+<div class="container">
+    <form th:action="@{/post/create}" method="post" th:object="${post}" id="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="0">
+        <div class="desc">
+
+            <div class="price">
+                <label for="priceHistory">История цены: </label>
+                <input type="text" name="priceHistory" id="priceHistory" class="form-control">
+            </div>
+        </div>
+        <div id="car" class="property_container">
+            <div th:object="${car}">
+                <label for="cars">Выберите автомобиль: </label>
+                <select name="name" id="cars" class="form-control cars">
+                    <option th:each="car, v : ${properties}" th:value="${car.name}"
+                            th:text="${car.name}" th:selected="${v.index == 0 ? true : false}"></option>
+                </select>
+            </div>
+            <div class="properties_container" th:each="car, v : ${properties}">
+                <div class="models" th:id="${car.name}">
+                    <div class="property_container" th:object="${model}">
+                        <label for="model">Ввберите модель:</label>
+                        <select name="model.name" id="model" class="form-control model">
+                            <option disabled selected value>Модель:</option>
+                            <option th:each="model, v : ${v.current.properties}" th:value="${model.key}"
+                                    th:text="${model.key}" th:selected="${v.index == 0 ? true : false}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="properties_container" th:each="car, carProperty : ${properties}">
+            <div th:each="model, modelProperty : ${carProperty.current.properties}" class="properties"
+                 th:id="${car.name + ' ' + model.key}">
+                <div class="property_container" th:object="${year}">
+                    <label for="year">Выберите год:</label>
+                    <select name="year.name" id="year" class="form-control">
+                        <option disabled selected value>Год:</option>
+                        <option th:each="k, v : ${model.value.years}" th:value="${k.name}"
+                                th:text="${k.name}"></option>
+                    </select>
+                </div>
+                <div class="property_container" th:object="${engine}">
+                    <label for="engine">Выберите двигатель:</label>
+                    <select name="engine.name" id="engine" class="form-control">
+                        <option disabled selected value>Двигатель:</option>
+                        <option th:each="k, v : ${model.value.engines}" th:value="${k.name}"
+                                th:text="${k.name}"></option>
+                    </select>
+                </div>
+                <div class="property_container" th:object="${transmission}">
+                    <label for="transmission">Выберите коробку передач:</label>
+                    <select name="transmission.name" id="transmission" class="form-control">
+                        <option disabled selected value>Коробка передач:</option>
+                        <option th:each="k, v : ${model.value.transmissions}" th:value="${k.name}"
+                                th:text="${k.name}"></option>
+                    </select>
+                </div>
+                <div class="property_container" th:object="${actuator}">
+                    <label for="actuator">Выберите привод:</label>
+                    <select name="actuator.name" id="actuator" class="form-control">
+                        <option disabled selected value>Привод:</option>
+                        <option th:each="k, v : ${model.value.actuators}" th:value="${k.name}"
+                                th:text="${k.name}"></option>
+                    </select>
+                </div>
+                <div class="property_container" th:object="${owner}">
+                    <label for="owner">Выберите владельца:</label>
+                    <select name="owner.name" id="owner" class="form-control">
+                        <option disabled selected value>Владелец:</option>
+                        <option th:each="k, v : ${model.value.owners}" th:value="${k.name}"
+                                th:text="${k.name}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="description">
+            <label for="description">Описание: </label>
+            <textarea name="description" id="description" class="form-control"></textarea>
+        </div>
+        <div id="photo">
+            <input type="file" name="carPhoto" id="carPhoto">
+        </div>
+        <button type="submit">Создаить</button>
+    </form>
+</div>
+<footer th:replace="footer"></footer>

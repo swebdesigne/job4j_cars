@@ -10,22 +10,22 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "engine")
-public class Engine {
+@Table(name = "model")
+public class Model {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    public Engine(String name) {
+    public Model(String name) {
         this.name = name;
     }
 
     @Override
     public String toString() {
-        return "'\nEngine{" +
+        return "Model{" +
                 "\nid=" + id +
-                ", \nÓname='" + name + '\'' +
+                ",\n name='" + name + '\'' +
                 '}';
     }
 

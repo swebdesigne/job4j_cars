@@ -113,8 +113,8 @@ public class UserController {
     @GetMapping("/delete")
     public String delete(HttpSession session) {
         var user = UserHttpSessionUtil.getUser(session);
-        var isDelete = simpleUserServer.delete(user);
-        if (!isDelete) {
+        var isDeleted = simpleUserServer.delete(user);
+        if (!isDeleted) {
             return "redirect:/user/deleteError";
         }
         return "redirect:/";

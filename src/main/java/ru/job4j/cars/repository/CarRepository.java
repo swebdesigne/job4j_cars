@@ -15,4 +15,6 @@ public interface CarRepository {
     boolean update(Car car);
 
     boolean delete(int id);
+
+    Optional<Car> findByProperty(Car car);
 }

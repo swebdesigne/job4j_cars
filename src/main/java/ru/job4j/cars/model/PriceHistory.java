@@ -22,4 +22,5 @@ public class PriceHistory {
     private BigInteger before;
     private BigInteger after;
     private LocalDateTime localDateTime = LocalDateTime.now();
+
 }

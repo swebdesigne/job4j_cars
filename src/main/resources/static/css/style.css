@@ -17,3 +17,141 @@
     color: #fff;
     padding: 10px;
 }
+
+/*#post .desc {*/
+/*    display: flex;*/
+/*}*/
+
+#post .description {
+    padding: 10px;
+}
+
+/*#car .properties {*/
+/*    display: flex;*/
+/*}*/
+
+.property_container {
+    width: 50%;
+    padding: 10px;
+}
+
+.properties_container .properties,
+.properties_container .models {
+    display: none;
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+    transition: all 1s, opacity .5s ease;
+}
+
+.properties_container .properties.active,
+.properties_container .models.active {
+    /*display: block; *!*/
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    /* width: 100%; */
+    flex-wrap: wrap;
+}
+
+div#car {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+div#car div {
+    width: 100%;
+    padding-right: 10px;
+}
+
+#car .properties_container {
+    display: none;
+}
+
+#car .properties_container .models.active {
+    width: 100%;
+    padding-right: 0;
+}
+
+#car .properties_container .models.active .property_container {
+    padding-right: 0 !important;
+}
+
+/* === CAR POST ===*/
+.postCar {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+.postCar h3 {
+    font-weight: 500;
+    margin-left: 20px;
+}
+
+.postCar:hover {
+    /*cursor:pointer;*/
+    box-shadow: 0 5px 20px 0 #0000001a;
+    padding: 5px;
+    /*border: 1px solid #db3727;*/
+}
+
+.postCar:hover h3 {
+    color: #db3727;
+}
+
+.postCar .carPhoto {
+    width: 30%;
+}
+
+.postCar .carPhoto img {
+    width: 100%;
+}
+
+.postCar .content {
+    padding: 0 20px;
+    width: 100%;
+}
+
+.content .data {
+    display: flex;
+}
+
+
+.fir_block_block {
+    margin-left: 0 !important;
+}
+
+.content .data div {
+    margin-left: 20px;
+}
+
+#page_post {
+    display: flex;
+}
+
+#page_post #img {
+    width: 30%;
+}
+
+#page_post img {
+    width: 100%;
+}
+
+#page_post #content {
+    margin-left: 20px;
+}
+
+.date_add {
+    font-weight: 600;
+    color: grey;
+}
+
+#page_post h2 {
+    color: #db3727;
+}
+
+/* === CAR POST ===*/

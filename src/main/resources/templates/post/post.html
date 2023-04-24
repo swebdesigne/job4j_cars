@@ -1,0 +1,16 @@
+<header th:replace="header"></header>
+<div class="container">
+    <div id="page_post" th:object="${post}">
+        <div id="img">
+            <img src="https://img.favcars.com/chrysler/300-lx/wallpapers_chrysler_300-lx_2006_9.jpg" alt="">
+        </div>
+        <div id="content">
+            <p class="date_add"><small th:text="${#temporals.format(post.created, 'dd.MM.yyyy')}"></small></p>
+            <h2 th:text="${post.car.name + ' ' + post.car.model.name}"></h2>
+            <p><b>Год: </b><span th:text="${post.car.year.name}"></span></p>
+            <p><b>Коробка передач: </b><span th:text="${post.car.transmission.name}"></span></p>
+            <p><b>Привод: </b><span th:text="${post.car.actuator.name}"></span></p>
+        </div>
+    </div>
+</div>
+<footer th:replace="footer"></footer>
