@@ -8,9 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.job4j.cars.model.*;
+import ru.job4j.cars.model.Car;
+import ru.job4j.cars.model.Owner;
+import ru.job4j.cars.model.Post;
 import ru.job4j.cars.service.SimpleCarService;
-import ru.job4j.cars.service.SimpleEngineService;
 import ru.job4j.cars.service.SimplePostService;
 import ru.job4j.cars.utils.CollectCarBySameNameWithAllPropertyUtil;
 
@@ -24,7 +25,6 @@ import java.io.IOException;
 public class PostController {
     private final SimplePostService postService;
     private final SimpleCarService carService;
-    private final SimpleEngineService engineService;
 
     @GetMapping("/add")
     public String add(Model model) {
